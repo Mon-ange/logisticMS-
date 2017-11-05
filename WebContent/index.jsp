@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<t1>诗诗's love ❤❤❤~~喵~~</t1>
-<t1>mengmeng's love ❤❤❤~~喵~~</t1>
-<p>I love you~</p>
+<h1>诗诗's love ❤❤❤~~喵~~</h1>
+<h1>mengmeng's love ❤❤❤~~喵~~</h1>
+<p>We love each other~</p>
 </body>
 </html>
