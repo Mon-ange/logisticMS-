@@ -5,11 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href="css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 
 <h1>诗诗's love ❤❤❤~~喵~~</h1>
 <h1>mengmeng's love ❤❤❤~~喵~~</h1>
 <p>We love each other~</p>
+<input type="text" class="form-control">
 </body>
 </html>
