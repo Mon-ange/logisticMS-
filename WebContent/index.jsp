@@ -9,6 +9,9 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 
+<style type="text/css">
+.jumbotron { background-image:url("img/index-bg.jpg"); margin-top: 50px;}
+</style>
 
 <body>
 
@@ -33,7 +36,7 @@
 	</div>
     
 </nav>
-<div class="jumbotron">
+<div class="jumbotron" bgcolor="#000000">
 	<div class="container">
 		
 		<form>
@@ -42,6 +45,7 @@
 			<p>We love each other~</p>
 			<div class="col-md-11"><input type="text" placeholder="Tracking Number" class="form-control"></div>
 			<div class="col-md-1"><button type="button" class="btn btn-primary btn-log" >Track</button></div>
+			<h1>&nbsp</h1>
 		</form>
 	
 	</div>
