@@ -28,7 +28,7 @@
     	</div>
     	<div class="navbar-right">
     		<ul class="nav navbar-nav">
-    			<li><a href="/login.jsp">Login</a></li>
+    			<li><a href="<%= request.getContextPath() %>/login.jsp">Login</a></li>
     			<li><a href="/register.jsp">Sign Up</a></li>
     		</ul>
     		

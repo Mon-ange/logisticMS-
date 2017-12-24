@@ -1,33 +1,39 @@
 package cn.brimon.model;
 
 public abstract class User {
-	private int userId;
-	private String username;
-	private String password;
-	private String userType;
+	private Integer userId;
+	private String userName;
+	private String passwd;
+
 	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
+
 	public String getUsername() {
-		return username;
+		return userName;
 	}
+
 	public void setUsername(String username) {
-		this.username = username;
+		this.userName = username;
 	}
+
 	public String getPassword() {
-		return password;
+		return passwd;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setPassword(String passwd) {
+		this.passwd = passwd;
 	}
-	public String getUserType() {
-		return userType;
+
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "User:\nuser_id=" + userId.toString() + "\nuser_name = " + userName;
 	}
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
-	
+
 }

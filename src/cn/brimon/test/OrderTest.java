@@ -4,18 +4,20 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import cn.brimon.dao.Dao;
+import cn.brimon.dao.OrderDao;
+import cn.brimon.dao.UserDao;
 import cn.brimon.model.Order;
+import cn.brimon.model.User;
 import junit.framework.TestCase;
 
 public class OrderTest {
 
 	@Test
 	public void test() {
-		Order order = new Order();
-		order.setOrderName("Ê¥µ®½ÚÆ»¹û");
-		TestCase.assertEquals(order.getOrderName(), "Ê¥µ®½Ú");
-		TestCase.assertEquals(order.getOrderName(), "Ê¥µ®½ÚÆ»¹û");
-		TestCase.assertNotNull(order.getOrderName());
+		//UserDao ud = new UserDao();
+		//User user = ud.getUserByUserNamePasswd("admin", "123456");
+		//System.out.println(user);
 	}
 
 }
