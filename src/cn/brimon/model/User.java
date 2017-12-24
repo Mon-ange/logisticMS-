@@ -35,5 +35,7 @@ public abstract class User {
 		// TODO Auto-generated method stub
 		return "User:\nuser_id=" + userId.toString() + "\nuser_name = " + userName;
 	}
+	
+	public abstract String toolBarDisplay(); 
 
 }

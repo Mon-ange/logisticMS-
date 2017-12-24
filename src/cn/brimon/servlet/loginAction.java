@@ -8,11 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.User;
 
 import cn.brimon.dao.UserDao;
 import cn.brimon.dao.UserDaoFactory;
+import cn.brimon.model.User;
 
 /**
  * Servlet implementation class loginAction
@@ -41,10 +42,14 @@ public class loginAction extends HttpServlet {
 		UserDao userDao = UserDaoFactory.getDao();
 		User user = (User) userDao.getUserByUserNamePasswd(userName, passwd);
 		if (user != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
 			response.sendRedirect(request.getContextPath() + "/index.jsp");
 		} else {
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
-			out.print("用户名输入错误");
+			out.print("用户名或密码输入错误");
 		}
 
 	}

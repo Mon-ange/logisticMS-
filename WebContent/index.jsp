@@ -1,3 +1,4 @@
+<%@page import="cn.brimon.model.User"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,12 +25,22 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           	</button>
-    		<a class="navbar-brand" href="#">Dream</a>
+    		<a class="navbar-brand" href="#">Brimon</a>
     	</div>
     	<div class="navbar-right">
     		<ul class="nav navbar-nav">
-    			<li><a href="<%= request.getContextPath() %>/login.jsp">Login</a></li>
-    			<li><a href="/register.jsp">Sign Up</a></li>
+    			<%
+    				User user = (User)session.getAttribute("user");
+    				if(user == null){
+    					out.print("<li><a href= \"" + request.getContextPath() + "/login.jsp\">Login</a></li>");
+    					out.print("<li><a href=\"" + request.getContextPath() + "/register.jsp\">Sign Up</a></li>");
+    				}
+    				else{
+    					out.print(user.toolBarDisplay());
+    				}
+    			%>
+    			  
+    			
     		</ul>
     		
     	</div>

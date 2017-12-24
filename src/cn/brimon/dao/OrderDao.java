@@ -6,9 +6,12 @@ import java.sql.Statement;
 import cn.brimon.model.Order;
 
 public class OrderDao extends Dao {
-
-	public Order getOrderById(int id){
+	
+	OrderDao(){
 		getConnection();
+	}
+	
+	public Order getOrderById(int id){
 		ResultSet rs = null;
 		Statement stmt = null;
 		try {

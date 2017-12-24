@@ -11,6 +11,7 @@ public class UserDao extends Dao {
 		super();
 	}
 	public User getUserByUserNamePasswd(String userName,String passwd) {
+		getConnection();
 		ResultSet rs = null;
 		Statement stmt = null;
 		try {
