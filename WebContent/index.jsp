@@ -36,7 +36,7 @@
     					out.print("<li><a href=\"" + request.getContextPath() + "/register.jsp\">Sign Up</a></li>");
     				}
     				else{
-    					out.print(user.toolBarDisplay());
+    					out.print(user.navBarDisplay());
     				}
     			%>
     			  

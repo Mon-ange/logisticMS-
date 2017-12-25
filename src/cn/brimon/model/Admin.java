@@ -1,12 +1,22 @@
 package cn.brimon.model;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Admin extends User {
 
 	@Override
-	public String toolBarDisplay() {
+	public String navBarDisplay() {
 		// TODO Auto-generated method stub
-		String ret = "<li><a>»¶Ó­Äú£¬×ğ¾´µÄ¹ÜÀíÔ±" + getUsername() + "</a></li>";
+		String ret = "<li><a>æ¬¢è¿æ‚¨ï¼Œå°Šæ•¬çš„ç®¡ç†å‘˜" + getUserName() + "</a></li>";
 		return ret;
 	}
-	
+
+	@Override
+	public String toolBarDisplay(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		String orderManageToolStr = "<a href=" + request.getContextPath() + "/order_manage.jsp" + ">è®¢å•ç®¡ç†</a>";
+		String ret = orderManageToolStr;
+		return ret;
+	}
+
 }

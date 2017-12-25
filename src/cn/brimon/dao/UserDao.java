@@ -28,9 +28,9 @@ public class UserDao extends Dao {
 			try {
 				if(rs.next()) {
 					User user = (User)Class.forName("cn.brimon.model." + rs.getString("user_type")).newInstance();
-					user.setUsername(rs.getString("user_name"));
+					user.setUserName(rs.getString("user_name"));
 					user.setUserId(rs.getInt("user_id"));
-					user.setPassword(rs.getString("passwd"));
+					user.setPasswd(rs.getString("passwd"));
 					return user;
 				}
 			} catch (Exception e) {

@@ -1,5 +1,7 @@
 package cn.brimon.model;
 
+import javax.servlet.http.HttpServletRequest;
+
 public abstract class User {
 	private Integer userId;
 	private String userName;
@@ -13,19 +15,19 @@ public abstract class User {
 		this.userId = userId;
 	}
 
-	public String getUsername() {
+	public String getUserName() {
 		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.userName = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getPassword() {
+	public String getPasswd() {
 		return passwd;
 	}
 
-	public void setPassword(String passwd) {
+	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
 
@@ -36,6 +38,8 @@ public abstract class User {
 		return "User:\nuser_id=" + userId.toString() + "\nuser_name = " + userName;
 	}
 	
-	public abstract String toolBarDisplay(); 
+	public abstract String navBarDisplay(); 
+
+	public abstract String toolBarDisplay(HttpServletRequest request);
 
 }
