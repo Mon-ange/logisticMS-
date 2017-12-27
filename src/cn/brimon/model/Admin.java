@@ -14,7 +14,7 @@ public class Admin extends User {
 	@Override
 	public String toolBarDisplay(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		String orderManageToolStr = "<a href=" + request.getContextPath() + "/order_manage.jsp" + ">订单管理</a>";
+		String orderManageToolStr = "<a href=\"javascript:ToolBarRequest()\"" + ">订单管理</a>";
 		String ret = orderManageToolStr;
 		return ret;
 	}
