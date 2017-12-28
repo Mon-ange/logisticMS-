@@ -1,6 +1,7 @@
 package cn.brimon.model;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public abstract class User {
 	private Integer userId;
@@ -40,6 +41,6 @@ public abstract class User {
 	
 	public abstract String navBarDisplay(); 
 
-	public abstract String toolBarDisplay(HttpServletRequest request);
+	public abstract void toolBarDisplay(HttpServletRequest request,HttpServletResponse res);
 
 }

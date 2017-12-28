@@ -1,6 +1,15 @@
 package cn.brimon.model;
 
+import java.util.*;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.brimon.display.CommentDisplayer;
+import cn.brimon.display.NewOrderDisplayer;
+import cn.brimon.display.OrderDisplayer;
+import cn.brimon.display.RepositoryDisplayer;
+import cn.brimon.display.ToolBarDisplayer;
 
 public class Admin extends User {
 
@@ -12,11 +21,15 @@ public class Admin extends User {
 	}
 
 	@Override
-	public String toolBarDisplay(HttpServletRequest request) {
+	public void toolBarDisplay(HttpServletRequest req,HttpServletResponse res) {
 		// TODO Auto-generated method stub
-		String orderManageToolStr = "<a href=\"javascript:ToolBarRequest()\"" + ">订单管理</a>";
-		String ret = orderManageToolStr;
-		return ret;
+		List<ToolBarDisplayer> toolList = Arrays.asList(new NewOrderDisplayer(),
+														new OrderDisplayer(),
+														new RepositoryDisplayer(),
+														new CommentDisplayer());
+		for(ToolBarDisplayer tool : toolList) {
+			tool.display(req, res);
+		}
 	}
 
 }

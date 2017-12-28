@@ -5,7 +5,7 @@
 <html>
 <head>
 <link href="../css/bootstrap.min.css" rel="stylesheet">
-<link href="https://v3.bootcss.com/examples/dashboard/dashboard.css" rel="stylesheet">
+<link href="../css/dashboard.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -22,11 +22,27 @@
 	    xmlhttp.send();
 	    
 	}
+	
+	function setActive(obj){
+	    var elements = document.getElementsByClassName("active");
+	    for(var i = 0 ; i < elements.length; i++){
+	        elements[i].setAttribute("class", ""); 
+	    }
+	    obj.parentNode.setAttribute("class","active");
+	    
+	}
+	function PanelShow(){
+	    var xmlHttp = new XMLHttpRequest();
+	    xmlHttp.onreadystatechange = function(){
+	        document.getElementById("main_div").innerHTML = xmlHttp.responseText;
+	    }
+	    xmlHttp.open("POST","add_order.jsp",true);
+	    xmlHttp.send();
+	}
 </script>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
-      <div class="row">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -49,15 +65,29 @@
         </div>
       </div>
     </nav>
+    
     <div class="container-fluid">
     <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Reports</a></li>
+          <%
+          	User user = (User) session.getAttribute("user");
+          	if(user == null){
+          		response.sendRedirect(request.getContextPath()+"/login.jsp");
+          	}	
+          	else{
+          		user.toolBarDisplay(request, response);
+          	}
+          	
+          	
+          %>
+          <%=request.getAttribute("toolbarstr") %>
+            <!-- <li name="selector"><a href="#" onclick="setActive(this)">Overview <span class="sr-only">(current)</span></a></li>
+            <li name="selector" class="active"><a href="#" onclick="setActive(this)">Reports</a></li>
             <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
+            <li><a href="#">Export</a></li> -->
           </ul>
           <ul class="nav nav-sidebar">
+          
             <li><a href="">Nav item</a></li>
             <li><a href="">Nav item again</a></li>
             <li><a href="">One more nav</a></li>
@@ -72,19 +102,8 @@
         </div>
     </div>
 	
-        
-        
-	<table>
-		<tr><td><%
-			User user = (User) session.getAttribute("user");
-			out.print(user.toolBarDisplay(request));
-		%></td>
-		<td>
-			<div id="panel_div">
-			</div>
-		</td>
-		<tr>
-	</table>
+  	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="main_div">
+  	</div>
 	
 	
 </body>
