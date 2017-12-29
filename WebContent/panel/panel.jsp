@@ -39,6 +39,11 @@
 	    xmlHttp.open("POST","add_order.jsp",true);
 	    xmlHttp.send();
 	}
+	function addCargo(){
+		//alert("hello");
+		var order_info_form = document.getElementById("order_info_div");
+		order_info_form.innerHTML = order_info_form.innerHTML + "货物:<input name=\"cargo_name\" type=\"text\"> 数量：<input id=\"num\"><br>";
+	}
 </script>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
