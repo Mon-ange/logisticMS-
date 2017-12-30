@@ -1,9 +1,9 @@
 package cn.brimon.dao;
 
 public class OrderDaoFactory extends DaoFactory {
-
-	public static Dao getDao() {
+	static OrderDao orderDao = new OrderDao();
+	public static OrderDao getDao() {
 		// TODO Auto-generated method stub
-		return null;
+		return orderDao;
 	}
 }

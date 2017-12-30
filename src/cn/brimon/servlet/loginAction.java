@@ -49,7 +49,7 @@ public class loginAction extends HttpServlet {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
-			out.print("用户名或密码输入错误");
+			out.print("鐢ㄦ埛鍚嶆垨瀵嗙爜閿欒锛岃閲嶆柊鐧诲綍");
 		}
 
 	}

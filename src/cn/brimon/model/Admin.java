@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cn.brimon.display.CommentDisplayer;
+import cn.brimon.display.MyOrderDisplayer;
 import cn.brimon.display.NewOrderDisplayer;
 import cn.brimon.display.OrderDisplayer;
 import cn.brimon.display.RepositoryDisplayer;
@@ -24,6 +25,7 @@ public class Admin extends User {
 	public void toolBarDisplay(HttpServletRequest req,HttpServletResponse res) {
 		// TODO Auto-generated method stub
 		List<ToolBarDisplayer> toolList = Arrays.asList(new NewOrderDisplayer(),
+														new MyOrderDisplayer(),
 														new OrderDisplayer(),
 														new RepositoryDisplayer(),
 														new CommentDisplayer());

@@ -18,7 +18,7 @@ public abstract class Dao {
 	protected void getConnection() {
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://133.130.101.213/logisticms?" +
-			        "user=lmsuser&password=lmsuser");
+			        "user=lmsuser&password=lmsuser&characterEncoding=UTF-8");
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			System.out.println("SQLException: " + ex.getMessage());

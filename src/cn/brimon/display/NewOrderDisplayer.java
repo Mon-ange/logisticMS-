@@ -14,7 +14,7 @@ public class NewOrderDisplayer implements ToolBarDisplayer {
 		try {
 			String toolBarStr = (String)req.getAttribute("toolbarstr");
 			if(toolBarStr == null) toolBarStr = "";
-			toolBarStr = toolBarStr + "<li><a href=\"javascript:PanelShow()\" onclick=\"setActive(this)\">新建订单 <span class=\"sr-only\">(current)</span></a></li>";
+			toolBarStr = toolBarStr + "<li><a href=\"javascript:PanelShow(\'add_order\')\" onclick=\"setActive(this)\">新建订单 <span class=\"sr-only\">(current)</span></a></li>";
 			req.setAttribute("toolbarstr", toolBarStr);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

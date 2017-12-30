@@ -11,6 +11,19 @@
 </head>
 
 <script type="text/javascript">
+	function checkNav(){
+		var nav = "<%=request.getParameter("nav")%>";
+		if(nav == "my_order"){
+			var elements = document.getElementsByClassName("active");
+		    for(var i = 0 ; i < elements.length; i++){
+		        elements[i].setAttribute("class", ""); 
+		    }
+		    var active_elements = document.getElementById("my_order");
+		    active_elements.parentNode.setAttribute("class","active");
+		    PanelShow(nav);
+		}
+		
+	}
 	function ToolBarRequest(){
 	    var xmlhttp = new XMLHttpRequest();
 	    xmlhttp.onreadystatechange = function(){
@@ -31,21 +44,23 @@
 	    obj.parentNode.setAttribute("class","active");
 	    
 	}
-	function PanelShow(){
+	function PanelShow(nav){
 	    var xmlHttp = new XMLHttpRequest();
 	    xmlHttp.onreadystatechange = function(){
 	        document.getElementById("main_div").innerHTML = xmlHttp.responseText;
 	    }
-	    xmlHttp.open("POST","add_order.jsp",true);
+	    xmlHttp.open("POST",nav + ".jsp",true);
 	    xmlHttp.send();
 	}
 	function addCargo(){
 		//alert("hello");
-		var order_info_form = document.getElementById("order_info_div");
-		order_info_form.innerHTML = order_info_form.innerHTML + "货物:<input name=\"cargo_name\" type=\"text\"> 数量：<input id=\"num\"><br>";
+		var container = document.getElementById("cargoList_div");
+		var cargo_div = document.getElementById("addCargo_div");
+		cargo_div_clone = cargo_div.cloneNode("true");
+		container.appendChild(cargo_div_clone);
 	}
 </script>
-<body>
+<body onload="checkNav()">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">

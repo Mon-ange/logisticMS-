@@ -3,13 +3,41 @@ package cn.brimon.model;
 public class Order {
 	private Integer orderId;
 	private String orderName;
-	private double cost;
+	private Double cost;
 	private String comments;
 	private User createUser;
 	private String destination;
 	private String outset;
+	private String contact;
+	private String receiver;
+	public Order(){
+		orderName = new String();
+		cost = new Double(0);
+		comments = new String();
+		createUser = new Admin();
+		destination = new String();
+		outset = new String();
+		contact = new String();
+		receiver = new String();
+	}
+	
+	public String getContact() {
+		return contact;
+	}
 
-	public int getOrderId() {
+	public String getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
+	public Integer getOrderId() {
 		return orderId;
 	}
 
@@ -25,11 +53,11 @@ public class Order {
 		this.orderName = orderName;
 	}
 
-	public double getCost() {
+	public Double getCost() {
 		return cost;
 	}
 
-	public void setCost(double cost) {
+	public void setCost(Double cost) {
 		this.cost = cost;
 	}
 
