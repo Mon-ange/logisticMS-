@@ -8,7 +8,7 @@ public abstract class User {
 	private String userName;
 	private String passwd;
 
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 

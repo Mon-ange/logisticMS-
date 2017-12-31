@@ -3,6 +3,8 @@ package cn.brimon.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import cn.brimon.model.Order;
@@ -14,7 +16,7 @@ public class OrderDao extends Dao {
 		getConnection();
 	}
 
-	public Order getOrderById(int id) {
+	public Order getOrderById(Integer id) {
 		ResultSet rs = null;
 		Statement stmt = null;
 		try {
@@ -53,24 +55,47 @@ public class OrderDao extends Dao {
 	public void addOrder(Order order) {
 		Statement stmt = null;
 		try {
-			
+
 			stmt = conn.createStatement();
-			String str=String.format("INSERT INTO orders(order_name,cost,comments,create_user,destination,outset,contact) "
-		   			   + "VALUES('%s','%s','%s','%s','%s','%s','%s')", order.getOrderName(),
-		   			order.getCost().toString(),order.getComments(),order.getCreateUser().getUserId(),
-		   			order.getDestination(),order.getOutset(),order.getContact());  
+			String str = String.format(
+					"INSERT INTO orders(order_name,cost,comments,create_user,destination,outset,contact,receiver) "
+							+ "VALUES('%s','%s','%s','%s','%s','%s','%s','%s')",
+					order.getOrderName(), order.getCost().toString(), order.getComments(),
+					order.getCreateUser().getUserId(), order.getDestination(), order.getOutset(), order.getContact(),
+					order.getReceiver());
 			stmt.execute(str);
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
 	}
-	public List getOrdersByCreateUser(User create_user) {
+
+	public List<Order> getOrdersByCreateUser(User create_user) {
 		ResultSet rs = null;
 		Statement stmt = null;
-		return null;
+		List<Order> list = new ArrayList<Order>();
+		try {
+			stmt = conn.createStatement();
+			System.out.println(
+					"Execute:  " + "SELECT * FROM orders WHERE create_user = " + create_user.getUserId().toString());
+			rs = stmt.executeQuery("SELECT * FROM orders WHERE create_user = " + create_user.getUserId().toString());
+			
+			while (rs.next()) {
+				Order order = new Order();
+				order.setOrderId(rs.getInt("order_id"));
+				order.setOrderName(rs.getString("order_name"));
+				order.setCost(rs.getDouble("cost"));
+				order.setDestination(rs.getString("destination"));
+				order.setReceiver(rs.getString("receiver"));
+				order.setContact(rs.getString("contact"));
+				list.add(order);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
