@@ -58,11 +58,11 @@ public class OrderDao extends Dao {
 
 			stmt = conn.createStatement();
 			String str = String.format(
-					"INSERT INTO orders(order_name,cost,comments,create_user,destination,outset,contact,receiver) "
-							+ "VALUES('%s','%s','%s','%s','%s','%s','%s','%s')",
+					"INSERT INTO orders(order_name,cost,comments,create_user,destination,outset,contact,receiver,stat) "
+							+ "VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')",
 					order.getOrderName(), order.getCost().toString(), order.getComments(),
 					order.getCreateUser().getUserId(), order.getDestination(), order.getOutset(), order.getContact(),
-					order.getReceiver());
+					order.getReceiver(), "wait");
 			stmt.execute(str);
 
 		} catch (Exception e) {
@@ -81,7 +81,7 @@ public class OrderDao extends Dao {
 			System.out.println(
 					"Execute:  " + "SELECT * FROM orders WHERE create_user = " + create_user.getUserId().toString());
 			rs = stmt.executeQuery("SELECT * FROM orders WHERE create_user = " + create_user.getUserId().toString());
-			
+
 			while (rs.next()) {
 				Order order = new Order();
 				order.setOrderId(rs.getInt("order_id"));
@@ -90,6 +90,7 @@ public class OrderDao extends Dao {
 				order.setDestination(rs.getString("destination"));
 				order.setReceiver(rs.getString("receiver"));
 				order.setContact(rs.getString("contact"));
+				order.setStat(rs.getString("stat"));
 				list.add(order);
 			}
 		} catch (SQLException e) {
@@ -98,4 +99,47 @@ public class OrderDao extends Dao {
 		}
 		return list;
 	}
+
+	public List<Order> getOrdersByStat(String...stat) {
+		ResultSet rs = null;
+		Statement stmt = null;
+		List<Order> list = new ArrayList<Order>();
+		try {
+			stmt = conn.createStatement();
+			String str = "SELECT * FROM orders WHERE '1'='1'";
+			for(String s : stat) {
+				str = str + "or stat = '" + s + "' ";
+			}
+			System.out.println("Execute:  " + str);
+			rs = stmt.executeQuery(str);
+			while (rs.next()) {
+				Order order = new Order();
+				order.setOrderId(rs.getInt("order_id"));
+				order.setOrderName(rs.getString("order_name"));
+				order.setCost(rs.getDouble("cost"));
+				order.setDestination(rs.getString("destination"));
+				order.setReceiver(rs.getString("receiver"));
+				order.setContact(rs.getString("contact"));
+				order.setStat(rs.getString("stat"));
+				list.add(order);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public void updateOrderStatByOrderId(String orderId, String stat) {
+		Statement stmt = null;
+		try {
+			stmt = conn.createStatement();
+			System.out.println("Execute:  " + "UPDATE orders SET stat = \'" + stat + "\' WHERE order_id = " + orderId);
+			stmt.execute("UPDATE orders SET stat = \'" + stat + "\' WHERE order_id = " + orderId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }

@@ -37,9 +37,10 @@
     				}
     				else{
     					out.print(user.navBarDisplay());
+    					out.print("<li><a href=\"LogOutAction.do\">Logout</a></li>");
     				}
     			%>
-    			  
+    			
     			
     		</ul>
     		

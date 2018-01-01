@@ -12,14 +12,11 @@
   <servlet>
     <servlet-name>loginAction</servlet-name>
     <servlet-class>cn.brimon.servlet.loginAction</servlet-class>
-    
   </servlet>
   <servlet-mapping>
-  	
     <servlet-name>loginAction</servlet-name>
     <url-pattern>/loginAction.do</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>AddOrderAction</servlet-name>
     <servlet-class>cn.brimon.servlet.AddOrderAction</servlet-class>
@@ -28,6 +25,20 @@
     <servlet-name>AddOrderAction</servlet-name>
     <url-pattern>/panel/AddOrderAction.do</url-pattern>
   </servlet-mapping>
-  
-  
+  <servlet>
+    <servlet-name>LogOutAction</servlet-name>
+    <servlet-class>cn.brimon.servlet.LogoutAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogOutAction</servlet-name>
+    <url-pattern>/LogOutAction.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>OutAction</servlet-name>
+    <servlet-class>cn.brimon.servlet.OutAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OutAction</servlet-name>
+    <url-pattern>/panel/OutAction.do</url-pattern>
+  </servlet-mapping>
 </web-app>

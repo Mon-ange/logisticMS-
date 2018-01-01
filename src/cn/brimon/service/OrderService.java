@@ -19,22 +19,49 @@ public class OrderService {
 		return od.getOrderById(id);
 	}
 	
+	private Hashtable<String,String> putOrderTableElement(Order order,Hashtable<String,String> element) {
+		element.put("order_id", order.getOrderId().toString());
+		element.put("order_name", order.getOrderName());
+		element.put("destination", order.getDestination());
+		element.put("receiver", order.getReceiver());
+		element.put("contact", order.getContact());
+		if(order.getStat().equals("wait"))
+			element.put("status","等待出库");
+		else if(order.getStat().equals("out"))
+			element.put("status", "已出库");
+		else
+			element.put("status", "未确认");
+		element.put("location", "");
+		return element;
+	}
+	
 	public List<Hashtable<String, String>> queryMyOrders(User create_user) {
 		List<Hashtable<String,String>> ret = new ArrayList<Hashtable<String, String> >();
 		OrderDao od = OrderDaoFactory.getDao();
 		List<Order> orderList = od.getOrdersByCreateUser(create_user);
 		for(Order order : orderList) {
 			Hashtable<String,String> element = new Hashtable<String,String>();
-			element.put("order_id", order.getOrderId().toString());
-			element.put("order_name", order.getOrderName());
-			element.put("destination", order.getDestination());
-			element.put("receiver", order.getReceiver());
-			element.put("contact", order.getContact());
-			element.put("location", "");
-			element.put("status", "");
+			element = putOrderTableElement(order, element);
 			ret.add(element);
 		}
 		return ret;
 	}
 	
+	
+	public List<Hashtable<String, String>> queryOutOrders(){
+		List<Hashtable<String,String>> ret = new ArrayList<Hashtable<String, String> >();
+		OrderDao od = OrderDaoFactory.getDao();
+		List<Order> orderList = od.getOrdersByStat("wait","out");
+		for(Order order : orderList) {
+			Hashtable<String,String> element = new Hashtable<String,String>();
+			element = putOrderTableElement(order, element);
+			ret.add(element);
+		}
+		return ret;
+	}
+	
+	public void OutOrderService(String orderId) {
+		OrderDao od = OrderDaoFactory.getDao();
+		od.updateOrderStatByOrderId(orderId, "out");
+	}
 }

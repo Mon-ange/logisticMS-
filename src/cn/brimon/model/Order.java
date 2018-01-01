@@ -10,6 +10,7 @@ public class Order {
 	private String outset;
 	private String contact;
 	private String receiver;
+	private String stat;
 	public Order(){
 		orderName = new String();
 		cost = new Double(0);
@@ -21,6 +22,14 @@ public class Order {
 		receiver = new String();
 	}
 	
+	public String getStat() {
+		return stat;
+	}
+
+	public void setStat(String stat) {
+		this.stat = stat;
+	}
+
 	public String getContact() {
 		return contact;
 	}

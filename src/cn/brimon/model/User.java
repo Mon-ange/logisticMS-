@@ -39,6 +39,8 @@ public abstract class User {
 		return "User:\nuser_id=" + userId.toString() + "\nuser_name = " + userName;
 	}
 	
+	public abstract void myOrdersDisplay(HttpServletRequest req, HttpServletResponse res);
+	
 	public abstract String navBarDisplay(); 
 
 	public abstract void toolBarDisplay(HttpServletRequest request,HttpServletResponse res);

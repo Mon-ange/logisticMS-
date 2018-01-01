@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -28,26 +29,40 @@
 			</thead>
 			<tbody>
 				<%
-					OrderService os = new OrderService();
-					List<Hashtable<String,String>> list = os.queryMyOrders((User)session.getAttribute("user"));
-					for(Hashtable<String,String> e : list){
-						String order_id = e.get("order_id");
-						String order_name = e.get("order_name");
-						String destination = e.get("destination");
-						String receiver = e.get("receiver");
-						String contact = e.get("contact");
-						String status = e.get("status");
-						String location = e.get("location");
-						out.println("<tr><td>"+order_id+"</td>"+"<td>"+order_name+"</td>"+
-									"<td>"+destination+"</td>");
-						out.println("<td>"+receiver+"</td>"+"<td>"+contact+"</td>"+"<td>"+status+"</td>");
-						out.println("<td>"+location+"</td>");
-						out.println("<td><input class=\"btn btn-danger\"type=\"button\" value=\"撤单\">");
-					}
+					User user = (User)session.getAttribute("user");
+					user.myOrdersDisplay(request, response);
 				%>
+				<%=request.getAttribute("my_order_table")%>
 			</tbody>
 		</table>
-	</div>
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="outModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							订单出库
+						</h4>
+					</div>
+					<form action="OutAction.do" method="post">
+					<div class="modal-body">
+						仓库：<input type="text" class="form-control" name="repository"><input type="hidden" id="order_id" name="order_id">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="submit" class="btn btn-primary" >
+							提交更改
+						</button>
+					
+					</div>
+					</form>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div>
 	
 </body>
 </html>

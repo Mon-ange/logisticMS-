@@ -6,6 +6,8 @@
 <head>
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/dashboard.css" rel="stylesheet">
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -58,6 +60,11 @@
 		var cargo_div = document.getElementById("addCargo_div");
 		cargo_div_clone = cargo_div.cloneNode("true");
 		container.appendChild(cargo_div_clone);
+	}
+	function setOutOrder(order_id){
+		var id_input = document.getElementById("order_id");
+		id_input.setAttribute("value",order_id);
+		$('#outModal').modal({});
 	}
 </script>
 <body onload="checkNav()">
