@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import cn.brimon.dao.LocationDao;
+import cn.brimon.dao.LocationDaoFactory;
 import cn.brimon.dao.OrderDao;
 import cn.brimon.dao.OrderDaoFactory;
+import cn.brimon.model.Location;
 import cn.brimon.model.Order;
 import cn.brimon.model.User;
 
@@ -38,10 +41,16 @@ public class OrderService {
 	public List<Hashtable<String, String>> queryMyOrders(User create_user) {
 		List<Hashtable<String,String>> ret = new ArrayList<Hashtable<String, String> >();
 		OrderDao od = OrderDaoFactory.getDao();
+		LocationService ls = new LocationService();
 		List<Order> orderList = od.getOrdersByCreateUser(create_user);
 		for(Order order : orderList) {
 			Hashtable<String,String> element = new Hashtable<String,String>();
+			List<Location> locationList = ls.getOrderLocationByOrder(order);
 			element = putOrderTableElement(order, element);
+			if(locationList.size()>0)
+				element.put("location", locationList.get(0).getLocationName());
+			else
+				element.put("location", "");
 			ret.add(element);
 		}
 		return ret;
@@ -52,16 +61,30 @@ public class OrderService {
 		List<Hashtable<String,String>> ret = new ArrayList<Hashtable<String, String> >();
 		OrderDao od = OrderDaoFactory.getDao();
 		List<Order> orderList = od.getOrdersByStat("wait","out");
+		LocationService ls = new LocationService();
 		for(Order order : orderList) {
 			Hashtable<String,String> element = new Hashtable<String,String>();
+			List<Location> locationList = ls.getOrderLocationByOrder(order);
 			element = putOrderTableElement(order, element);
+			if(locationList.size()>0)
+				element.put("location", locationList.get(0).getLocationName());
+			else
+				element.put("location", "");
 			ret.add(element);
 		}
 		return ret;
 	}
 	
-	public void OutOrderService(String orderId) {
+	public void OutOrderService(Order order,Location location) {
 		OrderDao od = OrderDaoFactory.getDao();
-		od.updateOrderStatByOrderId(orderId, "out");
+		od.updateOrderStatByOrderId(order.getOrderId().toString(), "out");
+		LocationDao ld = LocationDaoFactory.getDao();
+		ld.setLocationByOrder(order, location);
 	}
+	
+	public Order getOrderByOrderId(Integer order_id) {
+		OrderDao od = OrderDaoFactory.getDao();
+		return od.getOrderById(order_id);
+	}
+	
 }

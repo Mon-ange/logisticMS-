@@ -19,36 +19,27 @@ public class OrderDao extends Dao {
 	public Order getOrderById(Integer id) {
 		ResultSet rs = null;
 		Statement stmt = null;
+		Order order = new Order();
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM orders WHERE order_id = " + new Integer(id).toString());
+			if (rs.next()) {
+				order.setOrderId(id);
+				order.setOrderName(rs.getString("order_name"));
+				order.setCost(rs.getDouble("cost"));
+				order.setDestination(rs.getString("destination"));
+				// order.setCreateUser(rs.getInt("create_user"));
+				order.setOutset(rs.getString("outset"));
+				order.setComments(rs.getString("comments"));
+				return order;
+			}
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
 			ex.printStackTrace();
-		} finally {
-			try {
-				if (rs.next()) {
-					Order order = new Order();
-					order.setOrderId(id);
-					order.setOrderName(rs.getString("order_name"));
-					order.setCost(rs.getDouble("cost"));
-					order.setDestination(rs.getString("destination"));
-					// order.setCreateUser(rs.getInt("create_user"));
-					order.setOutset(rs.getString("outset"));
-					order.setComments(rs.getString("comments"));
-					return order;
-				}
-			} catch (SQLException ex) {
-				// TODO Auto-generated catch block
-				System.out.println("SQLException: " + ex.getMessage());
-				System.out.println("SQLState: " + ex.getSQLState());
-				System.out.println("VendorError: " + ex.getErrorCode());
-				ex.printStackTrace();
-			}
-		}
+		} 
 		return null;
 	}
 
@@ -93,11 +84,12 @@ public class OrderDao extends Dao {
 				order.setStat(rs.getString("stat"));
 				list.add(order);
 			}
+			return list;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return list;
+		return null;
 	}
 
 	public List<Order> getOrdersByStat(String...stat) {
@@ -123,11 +115,12 @@ public class OrderDao extends Dao {
 				order.setStat(rs.getString("stat"));
 				list.add(order);
 			}
+			return list;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return list;
+		return null;
 	}
 
 	public void updateOrderStatByOrderId(String orderId, String stat) {

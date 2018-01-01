@@ -1,5 +1,8 @@
 package cn.brimon.test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.Test;
 
 
@@ -16,12 +19,10 @@ public class OrderTest {
 		// UserDao ud = UserDaoFactory.getDao();
 		// User user = ud.getUserByUserNamePasswd("admin", "123456");
 		// System.out.println(user);
-		Order order = new Order();
-		order.setOrderId(123456);
-		order.setOrderName("222");
-		order.setComments("999");
-		OrderDao dao = OrderDaoFactory.getDao();
-		dao.addOrder(order);
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String dateStr = sdf.format(date);
+		System.out.println(dateStr); 
 	}
 
 }

@@ -14,6 +14,7 @@ public abstract class Dao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		getConnection();
 	}
 	protected void getConnection() {
 		try {
