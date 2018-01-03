@@ -9,6 +9,7 @@ import org.junit.Test;
 import cn.brimon.dao.OrderDao;
 import cn.brimon.dao.OrderDaoFactory;
 import cn.brimon.model.Order;
+import junit.framework.TestCase;
 public class OrderTest {
 
 	@Test

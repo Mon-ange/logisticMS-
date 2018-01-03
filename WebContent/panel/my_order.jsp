@@ -63,6 +63,37 @@
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal -->
 		</div>
+
+
+		<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							订单位置更新
+						</h4>
+					</div>
+					<form action="UpdateOrderAction.do" method="post">
+					<div class="modal-body">
+						当前位置：<input type="text" class="form-control" name="location_name"><input type="hidden" id="update_order_id" name="order_id">
+						路段成本：<input type="text" class="form-control" name="cost">
+						距离：<input type="text" class="form-control" name="distance">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="submit" class="btn btn-primary" >
+							提交更改
+						</button>
+					
+					</div>
+					</form>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div>
 	
 </body>
 </html>

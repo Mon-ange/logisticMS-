@@ -98,7 +98,7 @@ public class OrderDao extends Dao {
 		List<Order> list = new ArrayList<Order>();
 		try {
 			stmt = conn.createStatement();
-			String str = "SELECT * FROM orders WHERE '1'='1'";
+			String str = "SELECT * FROM orders WHERE '1'='2' ";
 			for(String s : stat) {
 				str = str + "or stat = '" + s + "' ";
 			}
@@ -129,6 +129,18 @@ public class OrderDao extends Dao {
 			stmt = conn.createStatement();
 			System.out.println("Execute:  " + "UPDATE orders SET stat = \'" + stat + "\' WHERE order_id = " + orderId);
 			stmt.execute("UPDATE orders SET stat = \'" + stat + "\' WHERE order_id = " + orderId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void addCostByOrder(Order order,Double cost) {
+		Statement stmt = null;
+		try {
+			stmt = conn.createStatement();
+			System.out.println("Execute:  " + "UPDATE orders SET cost = cost +" + String.valueOf(cost) + " WHERE order_id = " + order.getOrderId());
+			stmt.execute("UPDATE orders SET cost = cost +" + String.valueOf(cost) + " WHERE order_id = " + order.getOrderId());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -32,6 +32,8 @@ public class OrderService {
 			element.put("status","等待出库");
 		else if(order.getStat().equals("out"))
 			element.put("status", "已出库");
+		else if(order.getStat().equals("running"))
+			element.put("status", "运输中");
 		else
 			element.put("status", "未确认");
 		element.put("location", "");
@@ -75,6 +77,29 @@ public class OrderService {
 		return ret;
 	}
 	
+	public List<Hashtable<String, String> > queryRunningOrders(){
+		List<Hashtable<String,String>> ret = new ArrayList<Hashtable<String, String> >();
+		OrderDao od = OrderDaoFactory.getDao();
+		List<Order> orderList = od.getOrdersByStat("out","running");
+		LocationService ls = new LocationService();
+		for(Order order : orderList) {
+			Hashtable<String,String> element = new Hashtable<String,String>();
+			List<Location> locationList = ls.getOrderLocationByOrder(order);
+			element = putOrderTableElement(order, element);
+			if(locationList.size()>0)
+				element.put("location", locationList.get(0).getLocationName());
+			else
+				element.put("location", "");
+			ret.add(element);
+		}
+		return ret;
+	}
+	
+	public void RunOrderService(Order order) {
+		OrderDao dao = OrderDaoFactory.getDao();
+		dao.updateOrderStatByOrderId(order.getOrderId().toString(), "running");
+	}
+	
 	public void OutOrderService(Order order,Location location) {
 		OrderDao od = OrderDaoFactory.getDao();
 		od.updateOrderStatByOrderId(order.getOrderId().toString(), "out");
@@ -86,5 +111,12 @@ public class OrderService {
 		OrderDao od = OrderDaoFactory.getDao();
 		return od.getOrderById(order_id);
 	}
+	
+	public void OrderAddCost(Order order,Double cost) {
+		OrderDao od = OrderDaoFactory.getDao();
+		od.addCostByOrder(order, cost);
+	}
+	
+	
 	
 }

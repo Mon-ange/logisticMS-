@@ -66,6 +66,11 @@
 		id_input.setAttribute("value",order_id);
 		$('#outModal').modal({});
 	}
+	function setUpdateOrder(order_id){
+		var id_input = document.getElementById("update_order_id");
+		id_input.setAttribute("value",order_id);
+		$('#updateModal').modal({});
+	}
 </script>
 <body onload="checkNav()">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
