@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import cn.brimon.display.MyOrderDisplayer;
 import cn.brimon.display.NewOrderDisplayer;
+import cn.brimon.display.RepositoryDisplayer;
 import cn.brimon.display.ToolBarDisplayer;
 import cn.brimon.service.OrderService;
+import cn.brimon.service.CargoService;
 
 public class Repository extends User {
 
@@ -48,10 +50,32 @@ public class Repository extends User {
 	@Override
 	public void toolBarDisplay(HttpServletRequest req, HttpServletResponse res) {
 		// TODO Auto-generated method stub
-		List<ToolBarDisplayer> toolList = Arrays.asList(new MyOrderDisplayer());
+		List<ToolBarDisplayer> toolList = Arrays.asList(new MyOrderDisplayer(), new RepositoryDisplayer());
 		for (ToolBarDisplayer tool : toolList) {
 			tool.display(req, res);
 		}
+	}
+
+	public void repositoryDisplay(HttpServletRequest request, HttpServletResponse response) {
+		String str = new String();
+		CargoService cs = new CargoService();
+		List<Hashtable<String,String> > list = cs.queryCargos();
+		for (Hashtable<String, String> e : list) {
+			String cargo_id = e.get("cargo_id");
+			String cargo_name = e.get("cargo_name");
+			String cargo_quantity = e.get("cargo_quantity");
+			String repo_id = e.get("repo_id");
+			String repo_name = e.get("repo_name");
+			str = str.concat(
+					"<tr><td>" + cargo_id + "</td>" + "<td>" + cargo_name + "</td>" + "<td>" + repo_id + "</td>");
+			str = str.concat("<td>" + repo_name + "</td>");
+			str = str.concat("<td>" + cargo_quantity + "</td>");
+			str = str.concat("<td><input class=\"btn btn-success\" type=\"button\" onclick=\"javascript:setUpdateOrder()\" value=\"更新\">");
+		}
+		request.setAttribute("repo_table", str);
+		//List<Hashtable<String, String>> list = os.queryCargos();
+		
+		
 	}
 
 }

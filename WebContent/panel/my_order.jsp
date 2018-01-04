@@ -94,6 +94,34 @@
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal -->
 		</div>
+		<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							订单评价：
+						</h4>
+					</div>
+					<form action="AddCommentAction.do" method="post">
+					<div class="modal-body">
+						物流评分：<input type="text" class="form-control" name="score"><input type="hidden" id="comment_order_id" name="order_id">
+						评语：<input type="text" class="form-control" name="comments">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="submit" class="btn btn-primary" >
+							提交评价
+						</button>
+					
+					</div>
+					</form>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div>
 	
 </body>
 </html>

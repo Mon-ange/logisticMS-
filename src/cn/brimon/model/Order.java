@@ -11,6 +11,7 @@ public class Order {
 	private String contact;
 	private String receiver;
 	private String stat;
+	private Integer score;
 	public Order(){
 		orderName = new String();
 		cost = new Double(0);
@@ -20,10 +21,19 @@ public class Order {
 		outset = new String();
 		contact = new String();
 		receiver = new String();
+		score = new Integer(0);
 	}
 	
 	public String getStat() {
 		return stat;
+	}
+
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
 	}
 
 	public void setStat(String stat) {

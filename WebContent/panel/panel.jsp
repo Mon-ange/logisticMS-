@@ -24,7 +24,6 @@
 		    active_elements.parentNode.setAttribute("class","active");
 		    PanelShow(nav);
 		}
-		
 	}
 	function ToolBarRequest(){
 	    var xmlhttp = new XMLHttpRequest();
@@ -35,16 +34,13 @@
 	    }
 	    xmlhttp.open("POST","order_manage.jsp",true);
 	    xmlhttp.send();
-	    
 	}
-	
 	function setActive(obj){
 	    var elements = document.getElementsByClassName("active");
 	    for(var i = 0 ; i < elements.length; i++){
 	        elements[i].setAttribute("class", ""); 
 	    }
 	    obj.parentNode.setAttribute("class","active");
-	    
 	}
 	function PanelShow(nav){
 	    var xmlHttp = new XMLHttpRequest();
@@ -70,6 +66,14 @@
 		var id_input = document.getElementById("update_order_id");
 		id_input.setAttribute("value",order_id);
 		$('#updateModal').modal({});
+	}
+	function commentOrder(order_id){
+		var id_input = document.getElementById("comment_order_id");
+		id_input.setAttribute("value",order_id);
+		$('#commentModal').modal({});
+	}
+	function AddCargo(){
+		$('#cargoModal').modal({});
 	}
 </script>
 <body onload="checkNav()">

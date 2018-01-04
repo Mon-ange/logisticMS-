@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import cn.brimon.model.Cargo;
 import cn.brimon.model.Order;
 import cn.brimon.model.User;
 
@@ -146,5 +147,17 @@ public class OrderDao extends Dao {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void updateCommentScoreAndCommentByOrder(Order order) {
+		Statement stmt = null;
+		try {
+			stmt = conn.createStatement();
+			System.out.println("UPDATE orders SET score = " + order.getScore().toString() + " comments = '" + order.getComments() + "'" + " WHERE order_id = " + order.getOrderId());
+			stmt.execute("UPDATE orders SET score = " + order.getScore().toString() + " ,comments = '" + order.getComments() + "'" + " WHERE order_id = " + order.getOrderId());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }

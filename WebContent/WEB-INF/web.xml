@@ -41,7 +41,6 @@
     <servlet-name>OutAction</servlet-name>
     <url-pattern>/panel/OutAction.do</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>UpdateOrderAction</servlet-name>
     <servlet-class>cn.brimon.servlet.UpdateOrderAction</servlet-class>
@@ -49,5 +48,13 @@
   <servlet-mapping>
     <servlet-name>UpdateOrderAction</servlet-name>
     <url-pattern>/panel/UpdateOrderAction.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AddCommentAction</servlet-name>
+    <servlet-class>cn.brimon.servlet.AddCommentAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddCommentAction</servlet-name>
+    <url-pattern>/panel/AddCommentAction.do</url-pattern>
   </servlet-mapping>
 </web-app>

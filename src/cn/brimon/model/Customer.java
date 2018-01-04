@@ -37,7 +37,7 @@ public class Customer extends User {
 			str = str.concat("<td>"+receiver+"</td>"+"<td>"+contact+"</td>"+"<td>"+status+"</td>");
 			str = str.concat("<td>"+location+"</td>");
 			if(status == "运输中") {
-				str = str.concat("<td><input class=\"btn btn-info\"type=\"button\" value=\"确认收货\">");
+				str = str.concat("<td><input class=\"btn btn-info\"type=\"button\" onclick='javascript:commentOrder(\""+order_id.toString()+"\")' value=\"确认收货\">");
 			}
 			else {
 				str = str.concat("<td><input class=\"btn btn-danger\"type=\"button\" value=\"撤单\">");
