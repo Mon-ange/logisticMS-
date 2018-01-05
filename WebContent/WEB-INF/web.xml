@@ -57,4 +57,20 @@
     <servlet-name>AddCommentAction</servlet-name>
     <url-pattern>/panel/AddCommentAction.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>AddCargoAction</servlet-name>
+    <servlet-class>cn.brimon.servlet.AddCargoAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddCargoAction</servlet-name>
+    <url-pattern>/panel/AddCargoAction.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>InsertRepoAction</servlet-name>
+    <servlet-class>cn.brimon.servlet.InsertRepoAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertRepoAction</servlet-name>
+    <url-pattern>/panel/InsertRepoAction.do</url-pattern>
+  </servlet-mapping>
 </web-app>

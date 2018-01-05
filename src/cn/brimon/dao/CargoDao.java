@@ -8,6 +8,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import cn.brimon.model.Cargo;
+import cn.brimon.model.Repo;
 
 public class CargoDao extends Dao {
 	CargoDao(){
@@ -20,7 +21,7 @@ public class CargoDao extends Dao {
 		List<Cargo> list = new ArrayList<>();
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM cargos");
+			rs = stmt.executeQuery("SELECT * FROM cargo");
 			while(rs.next()) {
 				Cargo cargo = new Cargo();
 				Integer cargo_id = rs.getInt("cargo_id");
@@ -57,6 +58,61 @@ public class CargoDao extends Dao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public List<Cargo> getCargos() {
+		ResultSet rs = null;
+		Statement stmt = null;
+		List<Cargo> list = new ArrayList<>();
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("select * from cargo");
+			while(rs.next()) {
+				Cargo cargo = new Cargo();
+				cargo.setCargoId(rs.getInt("cargo_id"));
+				cargo.setCargoName(rs.getString("cargo_name"));
+				list.add(cargo);
+			}
+			return list;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public void addCargo(Cargo cargo) {
+		Statement stmt = null;
+		try {
+			stmt = conn.createStatement();
+			stmt.execute("INSERT INTO cargo(cargo_name) values('"+ cargo.getCargoName() + "')");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public Cargo getCargoById(String cargoId) {
+		ResultSet rs = null;
+		Statement stmt = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(
+					"select * from cargo" + 
+				    " where cargo_id = " + cargoId);
+			if (rs.next()) {
+				Cargo cargo = new Cargo();
+				cargo.setCargoId(rs.getInt("cargo_id"));
+				cargo.setCargoName(rs.getString("cargo_name"));
+				return cargo;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return null;

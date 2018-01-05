@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.brimon.display.CargoDisplayer;
 import cn.brimon.display.MyOrderDisplayer;
 import cn.brimon.display.NewOrderDisplayer;
 import cn.brimon.display.RepositoryDisplayer;
@@ -50,7 +51,10 @@ public class Repository extends User {
 	@Override
 	public void toolBarDisplay(HttpServletRequest req, HttpServletResponse res) {
 		// TODO Auto-generated method stub
-		List<ToolBarDisplayer> toolList = Arrays.asList(new MyOrderDisplayer(), new RepositoryDisplayer());
+		List<ToolBarDisplayer> toolList = Arrays.asList(new MyOrderDisplayer(), 
+														new RepositoryDisplayer(),
+														new CargoDisplayer()
+														);
 		for (ToolBarDisplayer tool : toolList) {
 			tool.display(req, res);
 		}
@@ -59,7 +63,7 @@ public class Repository extends User {
 	public void repositoryDisplay(HttpServletRequest request, HttpServletResponse response) {
 		String str = new String();
 		CargoService cs = new CargoService();
-		List<Hashtable<String,String> > list = cs.queryCargos();
+		List<Hashtable<String,String> > list = cs.queryReposAndCargos();
 		for (Hashtable<String, String> e : list) {
 			String cargo_id = e.get("cargo_id");
 			String cargo_name = e.get("cargo_name");
@@ -77,5 +81,21 @@ public class Repository extends User {
 		
 		
 	}
+	
+	public void cargoDisplay(HttpServletRequest request, HttpServletResponse response) {
+		String str = new String();
+		CargoService cs = new CargoService();
+		List<Cargo> list = cs.queryCargos();
+		for (Cargo cargo : list) {
+			String cargo_id = cargo.getCargoId().toString();
+			String cargo_name = cargo.getCargoName().toString();
+			str = str.concat(
+					"<tr><td>" + cargo_id + "</td>" + "<td>" + cargo_name + "</td>");
+			str = str.concat("<td><input class=\"btn btn-success btn-danger\" type=\"button\" onclick=\"javascript:deleteCargo()\" value=\"删除\">");
+		}
+		request.setAttribute("cargo_table", str);
+		//List<Hashtable<String, String>> list = os.queryCargos();
+	}
 
+	
 }

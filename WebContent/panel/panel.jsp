@@ -15,12 +15,22 @@
 <script type="text/javascript">
 	function checkNav(){
 		var nav = "<%=request.getParameter("nav")%>";
+		var elements = document.getElementsByClassName("active");
+	    for(var i = 0 ; i < elements.length; i++){
+	        elements[i].setAttribute("class", ""); 
+	    }
 		if(nav == "my_order"){
-			var elements = document.getElementsByClassName("active");
-		    for(var i = 0 ; i < elements.length; i++){
-		        elements[i].setAttribute("class", ""); 
-		    }
 		    var active_elements = document.getElementById("my_order");
+		    active_elements.parentNode.setAttribute("class","active");
+		    PanelShow(nav);
+		}
+		else if(nav=="cargo_manage"){
+		    var active_elements = document.getElementById("cargo_manage");
+		    active_elements.parentNode.setAttribute("class","active");
+		    PanelShow(nav);
+		}
+		else if(nav=="repository_manage"){
+		    var active_elements = document.getElementById("repository_manage");
 		    active_elements.parentNode.setAttribute("class","active");
 		    PanelShow(nav);
 		}
@@ -72,8 +82,11 @@
 		id_input.setAttribute("value",order_id);
 		$('#commentModal').modal({});
 	}
-	function AddCargo(){
+	function cargoModal(){
 		$('#cargoModal').modal({});
+	}
+	function addCargoModal(){
+		$('#addCargoModal').modal({});
 	}
 </script>
 <body onload="checkNav()">
@@ -86,7 +99,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="">Brimon</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -121,19 +134,6 @@
             <li name="selector" class="active"><a href="#" onclick="setActive(this)">Reports</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li> -->
-          </ul>
-          <ul class="nav nav-sidebar">
-          
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
           </ul>
         </div>
     </div>

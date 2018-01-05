@@ -1,5 +1,4 @@
 <%@page import="cn.brimon.model.Repository"%>
-<%@page import="cn.brimon.model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,10 +9,10 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<h1 class="page-header">仓库管理</h1>
+		<h1 class="page-header">货物管理</h1>
 		<div class="row">
 			<div class="col-md-2 col-md-offset-10" >
-				<input type="button" onclick="javascript:cargoModal()" class="btn btn-primary pull-right" value="入库"/>
+				<input type="button" onclick="javascript:addCargoModal()" class="btn btn-primary pull-right" value="新增货物"/>
 			</div>
 		</div>
 		<table class="table">
@@ -21,23 +20,20 @@
 				<tr>
 					<th>货物编号</th>
 					<th>货物名称</th>
-					<th>仓库编号</th>
-					<th>仓库名称</th>
-					<th>数量</th>
 					<th>操作</th>
 				</tr>
 			</thead>
 			<tbody>
 				<%
 					Repository repo = (Repository)session.getAttribute("user");
-					repo.repositoryDisplay(request, response);
+					repo.cargoDisplay(request, response);
 				%>
-				<%=request.getAttribute("repo_table") %>
+				<%=request.getAttribute("cargo_table") %>
 			</tbody>
 		
 		</table>
 	</div>
-	<div class="modal fade" id="cargoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="addCargoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -48,11 +44,9 @@
 							入库
 						</h4>
 					</div>
-					<form action="InsertRepoAction.do" method="post">
+					<form action="AddCargoAction.do" method="post">
 					<div class="modal-body">
-						仓库编号：<input type="text" class="form-control" name="repo_id"><input type="hidden" id="update_order_id" name="order_id">
-						物品编号：<input type="text" class="form-control" name="cargo_id">
-						入库数量：<input type="text" class="form-control" name="quantity">
+						物品名称：<input type="text" class="form-control" name="cargo_name">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
