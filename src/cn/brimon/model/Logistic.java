@@ -40,7 +40,7 @@ public class Logistic extends User {
 	@Override
 	public String navBarDisplay() {
 		// TODO Auto-generated method stub
-		String ret = "<li><a>欢迎您，尊敬的物流管理员" + getUserName() + "</a></li>";
+		String ret = "<li><a href=\"/LogisticMS/panel/panel.jsp\">欢迎您，尊敬的物流管理员" + getUserName() + "</a></li>";
 		return ret;
 	}
 

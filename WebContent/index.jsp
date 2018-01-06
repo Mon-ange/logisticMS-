@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Insert title here</title>
+<title>Brimon物流</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -52,9 +52,9 @@
 	<div class="container">
 		
 		<form>
-			<h1>诗诗's love ❤❤❤~~喵~~</h1>
-			<h1>mengmeng's love ❤❤❤~~喵~~</h1>
-			<p>We love each other~</p>
+			<h1><br></h1>
+			<h1><br></h1>
+			<h2><br></h2>
 			<div class="col-md-11"><input type="text" placeholder="Tracking Number" class="form-control"></div>
 			<div class="col-md-1"><button type="button" class="btn btn-primary btn-log" >Track</button></div>
 			<h1>&nbsp</h1>

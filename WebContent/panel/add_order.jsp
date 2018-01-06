@@ -50,7 +50,6 @@
 				</div>
 			</div>
 			<div class="row">
-				
 				<div class="col-md-1">
 					<br><input name="submit" type="submit" class="btn btn-success"  value="新建订单"/>
 				</div>

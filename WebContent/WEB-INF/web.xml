@@ -73,4 +73,12 @@
     <servlet-name>InsertRepoAction</servlet-name>
     <url-pattern>/panel/InsertRepoAction.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>AddLawAction</servlet-name>
+    <servlet-class>cn.brimon.servlet.AddLawAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddLawAction</servlet-name>
+    <url-pattern>/panel/AddLawAction.do</url-pattern>
+  </servlet-mapping>
 </web-app>

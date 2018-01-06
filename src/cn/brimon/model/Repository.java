@@ -44,7 +44,7 @@ public class Repository extends User {
 	@Override
 	public String navBarDisplay() {
 		// TODO Auto-generated method stub
-		String ret = "<li><a>欢迎您，尊敬的仓库管理员" + getUserName() + "</a></li>";
+		String ret = "<li><a href=\"/LogisticMS/panel/panel.jsp\">欢迎您，尊敬的仓库管理员" + getUserName() + "</a></li>";
 		return ret;
 	}
 
@@ -94,7 +94,6 @@ public class Repository extends User {
 			str = str.concat("<td><input class=\"btn btn-success btn-danger\" type=\"button\" onclick=\"javascript:deleteCargo()\" value=\"删除\">");
 		}
 		request.setAttribute("cargo_table", str);
-		//List<Hashtable<String, String>> list = os.queryCargos();
 	}
 
 	

@@ -18,7 +18,7 @@ public class Admin extends User {
 	@Override
 	public String navBarDisplay() {
 		// TODO Auto-generated method stub
-		String ret = "<li><a>欢迎您，尊敬的管理员" + getUserName() + "</a></li>";
+		String ret = "<li><a >欢迎您，尊敬的管理员" + getUserName() + "</a></li>";
 		return ret;
 	}
 

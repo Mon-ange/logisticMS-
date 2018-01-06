@@ -41,6 +41,7 @@ public class Customer extends User {
 			}
 			else {
 				str = str.concat("<td><input class=\"btn btn-danger\"type=\"button\" value=\"撤单\">");
+				str = str.concat("<td><input class=\"btn btn-info\"type=\"button\" value=\"详情\">");
 			}
 		}
 		req.setAttribute("my_order_table", str);
@@ -49,7 +50,7 @@ public class Customer extends User {
 	@Override
 	public String navBarDisplay() {
 		// TODO Auto-generated method stub
-		String ret = "<li><a>欢迎您，尊敬的用户" + getUserName() + "</a></li>";
+		String ret = "<li><a href=\"/LogisticMS/panel/panel.jsp\">欢迎您，尊敬的用户" + getUserName() + "</a></li>";
 		return ret;
 	}
 
